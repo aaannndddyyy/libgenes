@@ -27,35 +27,21 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef GENES_H
-#define GENES_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include "genes_datatypes.h"
 #include "genes_random.h"
 
-#define LIBGENES_MAX_CHROMOSOMES 64
-#define LIBGENES_MAX_CHROMOSOME_LENGTH 256
-#define LIBGENES_MAX_MT_LENGTH 30
+/**
+* @brief Lehmer random number generator
+* @param seed Random number generator seed
+* @return Pseudo-random number
+*/
+n_int genes_rand_num(n_uint * seed)
+{
+    n_uint v =
+        ((unsigned long long)(*seed) * 279470273UL) % 4294967291UL;
 
-typedef n_uint n_gene;
+    /* avoid the singularity */
+    if (v==0) v = (n_int)time(NULL);
 
-typedef struct {
-    n_gene gene[LIBGENES_MAX_CHROMOSOME_LENGTH];
-    n_uint length;
-} n_chromosome;
-
-typedef struct {
-    n_chromosome chromosome[2];
-} n_diploid;
-
-typedef struct {
-    n_diploid chromosome_pair[LIBGENES_MAX_CHROMOSOMES];
-    n_uint no_of_chromosome_pairs;
-    n_chromosome mt[LIBGENES_MAX_MT_LENGTH];
-} n_genome;
-
-
-#endif
+    *seed = v;
+    return abs((n_int)v);
+}
