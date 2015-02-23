@@ -43,7 +43,7 @@ typedef n_uint n_gene;
 
 typedef struct {
     n_gene gene[LIBGENES_MAX_CHROMOSOME_LENGTH];
-    int length;
+    n_uint length;
 } n_chromosome;
 
 typedef struct {
@@ -52,7 +52,7 @@ typedef struct {
 
 typedef struct {
     n_diploid chromosome_pair[LIBGENES_MAX_CHROMOSOMES];
-    int no_of_chromosome_pairs;
+    n_uint no_of_chromosome_pairs;
     n_chromosome mt[LIBGENES_MAX_MT_LENGTH];
 } n_genome;
 
