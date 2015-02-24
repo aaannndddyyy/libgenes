@@ -42,6 +42,9 @@
 typedef n_uint n_gene;
 
 typedef struct {
+    /* epigenetic switches */
+    n_byte enable[LIBGENES_MAX_CHROMOSOME_LENGTH];
+    /* genes */
     n_gene gene[LIBGENES_MAX_CHROMOSOME_LENGTH];
     n_uint length;
 } n_chromosome;
@@ -57,8 +60,12 @@ typedef struct {
 } n_genome;
 
 n_int genes_init(n_genome * genome,
-		 n_uint chromosomes,
-		 n_uint chromosome_length,
-		 n_uint mt_length,
-		 n_uint * random_seed);
+                 n_uint chromosomes,
+                 n_uint chromosome_length,
+                 n_uint mt_length,
+                 n_uint * random_seed);
+
+n_int genes_from_parents(n_genome * maternal,
+			 n_genome * paternal,
+			 n_genome * child);
 #endif

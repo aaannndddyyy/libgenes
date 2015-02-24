@@ -48,6 +48,8 @@ n_int genes_init(n_genome * genome,
       for (k = 0; k < chromosome_length; k++) {
         genome->chromosome_pair[i].chromosome[j].gene[k] =
           (n_gene)genes_rand_num(random_seed);
+        genome->chromosome_pair[i].chromosome[j].enable[k] =
+          (n_byte)(genes_rand_num(random_seed)&1);
       }
     }
   }
@@ -55,6 +57,16 @@ n_int genes_init(n_genome * genome,
   for (i = 0; i < mt_length; i++) {
     genome->mt.gene[i] =
       (n_gene)genes_rand_num(random_seed);
+    genome->mt.enable[i] =
+      (n_byte)(genes_rand_num(random_seed)&1);
   }
+  return 0;
+}
+
+n_int genes_from_parents(n_genome * maternal,
+			 n_genome * paternal,
+			 n_genome * child)
+{
+  /* TODO */
   return 0;
 }
