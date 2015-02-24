@@ -38,7 +38,6 @@
 
 #define LIBGENES_MAX_CHROMOSOMES 64
 #define LIBGENES_MAX_CHROMOSOME_LENGTH 256
-#define LIBGENES_MAX_MT_LENGTH 30
 
 typedef n_uint n_gene;
 
@@ -53,9 +52,13 @@ typedef struct {
 
 typedef struct {
     n_diploid chromosome_pair[LIBGENES_MAX_CHROMOSOMES];
+    n_chromosome mt;
     n_uint no_of_chromosome_pairs;
-    n_chromosome mt[LIBGENES_MAX_MT_LENGTH];
 } n_genome;
 
-
+n_int genes_init(n_genome * genome,
+		 n_uint chromosomes,
+		 n_uint chromosome_length,
+		 n_uint mt_length,
+		 n_uint * random_seed);
 #endif
